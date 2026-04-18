@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: edusphere
+      POSTGRES_PASSWORD: edusphere
+      POSTGRES_DB: edusphere
+    ports:
+      # Use 5433 on host to avoid clashing with a local PostgreSQL on 5432 (common on Windows).
+      - "55432:5432"
+    volumes:
+      - edusphere_pg:/var/lib/postgresql/data
+
+volumes:
+  edusphere_pg:
